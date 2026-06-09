@@ -226,7 +226,7 @@ footer{text-align:center;padding:20px 0;font-size:11px;color:rgba(255,255,255,.2
     <div class="teams-grid">
       <div class="team-select-wrap">
         <label>Đội 1</label>
-        <select id="team1"></select>
+        <select id="team1" onchange="updateTeam2()"></select>
       </div>
       <div class="vs-badge"><span>VS</span></div>
       <div class="team-select-wrap">
@@ -463,7 +463,7 @@ let lastResult = null;
 function populateTeams() {
   const s1 = document.getElementById('team1');
   const s2 = document.getElementById('team2');
-  s1.innerHTML = s2.innerHTML = '';
+  s1.innerHTML = '';
   const groups = {};
   TEAMS.forEach((t,i) => {
     if(!groups[t.group]) groups[t.group] = [];
@@ -471,23 +471,62 @@ function populateTeams() {
   });
   Object.keys(groups).sort().forEach(g => {
     const og1 = document.createElement('optgroup');
-    const og2 = document.createElement('optgroup');
-    og1.label = og2.label = `Bảng ${g}`;
+    og1.label = `Bảng ${g}`;
     groups[g].forEach(t => {
       const rank = (TEAM_STATS[t.name] || {rank:'?'}).rank;
-      const label = `${t.flag} ${t.name} (FIFA #${rank})`;
-      og1.appendChild(new Option(label, t.idx));
-      og2.appendChild(new Option(label, t.idx));
+      og1.appendChild(new Option(`${t.flag} ${t.name} (FIFA #${rank})`, t.idx));
     });
-    s1.appendChild(og1); s2.appendChild(og2);
+    s1.appendChild(og1);
   });
-  s2.selectedIndex = 1;
+  updateTeam2();
+}
+
+function updateTeam2() {
+  const s1 = document.getElementById('team1');
+  const s2 = document.getElementById('team2');
+  const selectedIdx = parseInt(s1.value);
+  const selectedTeam = TEAMS[selectedIdx];
+  const prevVal = parseInt(s2.value);
+
+  s2.innerHTML = '';
+
+  if (selectedStage === 'Vòng Bảng') {
+    // Chỉ hiện các đội cùng bảng, trừ đội 1
+    const teammates = TEAMS.map((t,i)=>({...t,idx:i}))
+      .filter(t => t.group === selectedTeam.group && t.idx !== selectedIdx);
+    teammates.forEach(t => {
+      const rank = (TEAM_STATS[t.name] || {rank:'?'}).rank;
+      s2.appendChild(new Option(`${t.flag} ${t.name} (FIFA #${rank})`, t.idx));
+    });
+  } else {
+    // Tất cả đội, trừ đội 1, nhóm theo bảng
+    const groups = {};
+    TEAMS.forEach((t,i) => {
+      if(i === selectedIdx) return;
+      if(!groups[t.group]) groups[t.group] = [];
+      groups[t.group].push({...t, idx:i});
+    });
+    Object.keys(groups).sort().forEach(g => {
+      const og = document.createElement('optgroup');
+      og.label = `Bảng ${g}`;
+      groups[g].forEach(t => {
+        const rank = (TEAM_STATS[t.name] || {rank:'?'}).rank;
+        og.appendChild(new Option(`${t.flag} ${t.name} (FIFA #${rank})`, t.idx));
+      });
+      s2.appendChild(og);
+    });
+    // Giữ lại lựa chọn cũ nếu còn hợp lệ
+    if ([...s2.options].some(o => parseInt(o.value) === prevVal)) {
+      s2.value = prevVal;
+    }
+  }
 }
 
 function selectStage(el) {
   document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
   selectedStage = el.dataset.stage;
+  updateTeam2();
 }
 
 function makeBubbles() {
