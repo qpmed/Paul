@@ -4,540 +4,225 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bạch Tuộc Paul - World Cup 2026</title>
+<meta property="og:title" content="🐙 Bạch Tuộc Paul dự đoán World Cup 2026"/>
+<meta property="og:description" content="Nhà tiên tri huyền thoại trở lại — dự đoán tỉ số AI"/>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Nunito:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700;800;900&family=Bebas+Neue&display=swap');
+:root{
+  --ocean-deep:#0a1628;--ocean-mid:#0d2545;--ocean-light:#1a4a7a;
+  --bubble:#1e6fa8;--paul-purple:#7b2d8b;--paul-accent:#c04fd8;
+  --gold:#f5c518;--coral:#ff6b6b;--foam:#e8f4fd;--white:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--ocean-deep);font-family:'Be Vietnam Pro',sans-serif;color:var(--white);min-height:100vh;overflow-x:hidden;}
 
-  :root {
-    --ocean-deep: #0a1628;
-    --ocean-mid: #0d2545;
-    --paul-purple: #7b2d8b;
-    --paul-accent: #c04fd8;
-    --gold: #f5c518;
-    --coral: #ff6b6b;
-    --white: #ffffff;
-  }
+/* Ocean bg */
+.ocean-bg{position:fixed;inset:0;z-index:0;background:linear-gradient(180deg,#0a1628 0%,#0d2545 40%,#0f3560 70%,#1a4a7a 100%);overflow:hidden;}
+.bubble{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.3),rgba(30,111,168,.1));border:1px solid rgba(255,255,255,.15);animation:rise linear infinite;}
+@keyframes rise{0%{transform:translateY(100vh) scale(.5);opacity:0}10%{opacity:1}90%{opacity:.6}100%{transform:translateY(-10vh) scale(1);opacity:0}}
+.seaweed{position:absolute;bottom:0;width:20px;background:#1a6b3a;transform-origin:bottom center;animation:sway 3s ease-in-out infinite;border-radius:10px 10px 0 0;opacity:.6;}
+@keyframes sway{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* Layout */
+.container{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:20px 16px 60px;}
 
-  body {
-    background: var(--ocean-deep);
-    font-family: 'Nunito', sans-serif;
-    color: var(--white);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+/* Header */
+header{text-align:center;padding:30px 0 20px;}
+header .eyebrow{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--paul-accent);margin-bottom:10px;font-weight:700;}
+header h1{font-family:'Be Vietnam Pro',sans-serif;font-weight:900;font-size:clamp(42px,10vw,82px);line-height:1;letter-spacing:-1px;background:linear-gradient(135deg,var(--gold),#fff,var(--paul-accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px;}
+header .subtitle{font-size:14px;color:rgba(255,255,255,.6);font-weight:400;}
 
-  .ocean-bg {
-    position: fixed; inset: 0; z-index: 0;
-    background: linear-gradient(180deg, #0a1628 0%, #0d2545 40%, #0f3560 70%, #1a4a7a 100%);
-    overflow: hidden;
-  }
+/* Paul */
+.paul-container{display:flex;justify-content:center;margin:10px 0 20px;position:relative;}
+.paul-wrap{position:relative;width:200px;height:220px;}
+.paul-svg{width:100%;height:100%;filter:drop-shadow(0 0 30px rgba(123,45,139,.6));animation:float 4s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0px) rotate(-2deg)}50%{transform:translateY(-12px) rotate(2deg)}}
+.paul-svg.thinking{animation:wobble .4s ease-in-out infinite;}
+@keyframes wobble{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
 
-  .bubble {
-    position: absolute;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3), rgba(30,111,168,0.1));
-    border: 1px solid rgba(255,255,255,0.15);
-    animation: rise linear infinite;
-  }
+/* Tentacle wiggle when thinking */
+.paul-svg.thinking .tentacle{animation:tentacleWave .3s ease-in-out infinite alternate;}
+@keyframes tentacleWave{0%{transform:scaleY(1.05)}100%{transform:scaleY(.95)}}
 
-  @keyframes rise {
-    0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 0.6; }
-    100% { transform: translateY(-10vh) scale(1); opacity: 0; }
-  }
+.paul-thinking{position:absolute;top:-10px;right:-40px;background:white;color:#333;font-size:11px;font-weight:700;padding:6px 10px;border-radius:12px 12px 12px 0;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.3);display:none;}
+.paul-thinking.show{display:block;animation:pop .3s ease;}
+@keyframes pop{0%{transform:scale(.5);opacity:0}80%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
 
-  .seaweed {
-    position: absolute; bottom: 0;
-    width: 20px; background: #1a6b3a;
-    transform-origin: bottom center;
-    animation: sway 3s ease-in-out infinite;
-    border-radius: 10px 10px 0 0;
-    opacity: 0.6;
-  }
+/* Countdown */
+.countdown-bar{text-align:center;margin-bottom:8px;padding:10px 20px;background:rgba(245,197,24,.08);border:1px solid rgba(245,197,24,.2);border-radius:14px;}
+.countdown-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:4px;}
+.countdown-time{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:4px;color:var(--gold);}
 
-  @keyframes sway {
-    0%, 100% { transform: rotate(-8deg); }
-    50% { transform: rotate(8deg); }
-  }
+/* Card */
+.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:24px;margin-bottom:20px;backdrop-filter:blur(10px);}
+.card-title{font-family:'Be Vietnam Pro',sans-serif;font-weight:800;font-size:18px;letter-spacing:.3px;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
 
-  .container {
-    position: relative; z-index: 1;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 16px 60px;
-  }
+/* Teams grid */
+.teams-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;margin-bottom:16px;align-items:end;}
+.team-select-wrap{display:flex;flex-direction:column;gap:6px;}
+.team-select-wrap label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);}
+select{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:white;padding:10px 14px;border-radius:10px;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;font-weight:700;cursor:pointer;outline:none;appearance:none;transition:all .2s;width:100%;}
+select:hover,select:focus{border-color:var(--paul-accent);background:rgba(192,79,216,.15);}
+select option{background:#0d2545;color:white;}
+.vs-badge{display:flex;align-items:center;justify-content:center;padding-bottom:2px;}
+.vs-badge span{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--coral);text-shadow:0 0 20px rgba(255,107,107,.5);}
 
-  header { text-align: center; padding: 30px 0 20px; }
+/* Stage pills */
+.stage-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.pill{padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;color:rgba(255,255,255,.7);}
+.pill:hover,.pill.active{background:var(--paul-purple);border-color:var(--paul-accent);color:white;transform:translateY(-1px);}
 
-  header .eyebrow {
-    font-size: 12px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--paul-accent);
-    margin-bottom: 8px;
-  }
+/* Predict btn */
+.btn-predict{width:100%;padding:16px;background:linear-gradient(135deg,var(--paul-purple),var(--paul-accent));border:none;border-radius:14px;color:white;font-family:'Be Vietnam Pro',sans-serif;font-weight:800;font-size:19px;letter-spacing:.5px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;}
+.btn-predict::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.2),transparent);opacity:0;transition:opacity .3s;}
+.btn-predict:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(123,45,139,.5);}
+.btn-predict:hover::before{opacity:1;}
+.btn-predict:active{transform:translateY(0);}
+.btn-predict:disabled{opacity:.5;cursor:not-allowed;transform:none;}
 
-  header h1 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: clamp(48px, 10vw, 88px);
-    line-height: 0.9;
-    background: linear-gradient(135deg, var(--gold), #fff, var(--paul-accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 6px;
-  }
+/* Result card */
+#result-section{display:none;}
+.result-card{background:linear-gradient(135deg,rgba(123,45,139,.3),rgba(192,79,216,.15));border:1px solid var(--paul-accent);border-radius:20px;padding:28px;text-align:center;margin-bottom:20px;animation:resultIn .5s cubic-bezier(.34,1.56,.64,1);}
+@keyframes resultIn{from{opacity:0;transform:scale(.92) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.result-match-label{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--paul-accent);margin-bottom:12px;}
+.score-display{display:flex;align-items:center;justify-content:center;gap:16px;margin:16px 0;}
+.score-team{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:120px;}
+.score-flag{font-size:44px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4));}
+.score-name{font-weight:900;font-size:14px;text-transform:uppercase;letter-spacing:1px;}
+.score-num{font-family:'Bebas Neue',sans-serif;font-size:80px;line-height:1;color:var(--gold);text-shadow:0 0 40px rgba(245,197,24,.5);animation:numPop .4s cubic-bezier(.34,1.56,.64,1);}
+@keyframes numPop{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+.score-dash{font-family:'Bebas Neue',sans-serif;font-size:48px;color:rgba(255,255,255,.3);margin-bottom:30px;}
+.result-winner{font-size:13px;color:rgba(255,255,255,.7);margin-bottom:6px;}
+.winner-name{font-family:'Be Vietnam Pro',sans-serif;font-weight:800;font-size:28px;color:var(--gold);letter-spacing:.5px;}
+.confidence-bar-wrap{margin:20px 0 0;text-align:left;}
+.confidence-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px;display:flex;justify-content:space-between;}
+.confidence-bar{height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;}
+.confidence-fill{height:100%;background:linear-gradient(90deg,var(--paul-purple),var(--gold));border-radius:3px;transition:width 1.2s cubic-bezier(.4,0,.2,1);width:0%;}
+.paul-verdict{background:rgba(255,255,255,.06);border-radius:12px;padding:14px 18px;margin-top:16px;font-size:14px;color:rgba(255,255,255,.85);font-style:italic;line-height:1.7;text-align:left;}
+.paul-verdict strong{color:var(--paul-accent);font-style:normal;}
 
-  header .subtitle {
-    font-size: 14px;
-    color: rgba(255,255,255,0.6);
-    font-weight: 400;
-  }
+/* Share buttons */
+.share-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+.btn-share{flex:1;min-width:120px;padding:10px 14px;border-radius:10px;border:none;font-family:'Be Vietnam Pro',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.btn-share:hover{transform:translateY(-1px);filter:brightness(1.1);}
+.btn-share.fb{background:#1877f2;color:white;}
+.btn-share.tw{background:#000;color:white;}
+.btn-share.copy{background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.2);}
 
-  .paul-container {
-    display: flex;
-    justify-content: center;
-    margin: 10px 0 20px;
-  }
+/* History */
+.history-list{display:flex;flex-direction:column;gap:10px;}
+.history-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;font-size:13px;animation:slideIn .3s ease;}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+.history-teams{font-weight:700;}
+.history-score{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold);letter-spacing:2px;}
+.history-stage{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);}
 
-  .paul-wrap {
-    position: relative;
-    width: 180px;
-    height: 180px;
-  }
+/* Loading */
+.loading{display:none;justify-content:center;align-items:center;gap:10px;padding:20px;color:rgba(255,255,255,.6);font-size:14px;}
+.loading.show{display:flex;}
+.spinner{width:20px;height:20px;border:2px solid rgba(255,255,255,.1);border-top-color:var(--paul-accent);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-  .paul-svg {
-    width: 100%;
-    height: 100%;
-    filter: drop-shadow(0 0 30px rgba(123,45,139,0.6));
-    animation: float 4s ease-in-out infinite;
-  }
+/* Footer */
+footer{text-align:center;padding:20px 0;font-size:11px;color:rgba(255,255,255,.2);letter-spacing:1px;}
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(-2deg); }
-    50% { transform: translateY(-12px) rotate(2deg); }
-  }
-
-  .paul-thinking {
-    position: absolute;
-    top: -10px; right: -40px;
-    background: white;
-    color: #333;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 6px 10px;
-    border-radius: 12px 12px 12px 0;
-    white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    display: none;
-  }
-
-  .paul-thinking.show { display: block; animation: pop 0.3s ease; }
-
-  @keyframes pop {
-    0% { transform: scale(0.5); opacity: 0; }
-    80% { transform: scale(1.1); }
-    100% { transform: scale(1); opacity: 1; }
-  }
-
-  .card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 20px;
-    padding: 24px;
-    margin-bottom: 20px;
-    backdrop-filter: blur(10px);
-  }
-
-  .card-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 22px;
-    letter-spacing: 2px;
-    color: var(--gold);
-    margin-bottom: 16px;
-  }
-
-  /* Tabs bảng đấu */
-  .group-tabs {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
-  }
-
-  .gtab {
-    padding: 5px 11px;
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.2);
-    background: rgba(255,255,255,0.05);
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s;
-    color: rgba(255,255,255,0.6);
-  }
-
-  .gtab:hover, .gtab.active {
-    background: var(--paul-purple);
-    border-color: var(--paul-accent);
-    color: white;
-  }
-
-  .teams-grid {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 10px;
-    align-items: end;
-    margin-bottom: 16px;
-  }
-
-  .team-select-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .team-select-wrap label {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-  }
-
-  select {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: white;
-    padding: 10px 12px;
-    border-radius: 10px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    outline: none;
-    appearance: none;
-    width: 100%;
-    transition: all 0.2s;
-  }
-
-  select:hover, select:focus {
-    border-color: var(--paul-accent);
-    background: rgba(192,79,216,0.15);
-  }
-
-  select option { background: #0d2545; color: white; }
-
-  .vs-badge {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 10px;
-  }
-
-  .vs-badge span {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 28px;
-    color: var(--coral);
-    text-shadow: 0 0 20px rgba(255,107,107,0.5);
-  }
-
-  .stage-pills {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
-  }
-
-  .pill {
-    padding: 6px 14px;
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.2);
-    background: rgba(255,255,255,0.05);
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s;
-    color: rgba(255,255,255,0.7);
-  }
-
-  .pill:hover, .pill.active {
-    background: var(--paul-purple);
-    border-color: var(--paul-accent);
-    color: white;
-  }
-
-  .btn-predict {
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, var(--paul-purple), var(--paul-accent));
-    border: none;
-    border-radius: 14px;
-    color: white;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 22px;
-    letter-spacing: 3px;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-
-  .btn-predict:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(123,45,139,0.5); }
-  .btn-predict:active { transform: translateY(0); }
-
-  /* Result */
-  #result-section { display: none; }
-
-  .result-card {
-    background: linear-gradient(135deg, rgba(123,45,139,0.3), rgba(192,79,216,0.15));
-    border: 1px solid var(--paul-accent);
-    border-radius: 20px;
-    padding: 28px;
-    text-align: center;
-    margin-bottom: 20px;
-    animation: pop 0.4s ease;
-  }
-
-  .result-match-label {
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--paul-accent);
-    margin-bottom: 12px;
-  }
-
-  .score-display {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin: 16px 0;
-  }
-
-  .score-team {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    min-width: 110px;
-  }
-
-  .score-flag { font-size: 38px; }
-
-  .score-name {
-    font-weight: 900;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .score-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 70px;
-    line-height: 1;
-    color: var(--gold);
-    text-shadow: 0 0 30px rgba(245,197,24,0.4);
-  }
-
-  .score-dash {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 44px;
-    color: rgba(255,255,255,0.3);
-    margin-bottom: 28px;
-  }
-
-  .result-winner {
-    font-size: 13px;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 4px;
-  }
-
-  .winner-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 30px;
-    color: var(--gold);
-    letter-spacing: 2px;
-  }
-
-  .confidence-bar-wrap {
-    margin: 18px 0 0;
-    text-align: left;
-  }
-
-  .confidence-label {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    margin-bottom: 6px;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .confidence-bar {
-    height: 6px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-
-  .confidence-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--paul-purple), var(--gold));
-    border-radius: 3px;
-    transition: width 1s cubic-bezier(0.4,0,0.2,1);
-    width: 0%;
-  }
-
-  .paul-verdict {
-    background: rgba(255,255,255,0.06);
-    border-radius: 12px;
-    padding: 14px 18px;
-    margin-top: 16px;
-    font-size: 14px;
-    color: rgba(255,255,255,0.8);
-    font-style: italic;
-    line-height: 1.6;
-    text-align: left;
-  }
-
-  .paul-verdict strong { color: var(--paul-accent); font-style: normal; }
-
-  /* History */
-  .history-list { display: flex; flex-direction: column; gap: 10px; }
-
-  .history-item {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 13px;
-    animation: slideIn 0.3s ease;
-  }
-
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateX(-20px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-
-  .history-teams { font-weight: 700; }
-  .history-score {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 22px;
-    color: var(--gold);
-    letter-spacing: 2px;
-  }
-  .history-stage {
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    margin-top: 2px;
-  }
-
-  footer {
-    text-align: center;
-    padding: 20px 0;
-    font-size: 11px;
-    color: rgba(255,255,255,0.2);
-    letter-spacing: 1px;
-  }
-
-  @media (max-width: 480px) {
-    .teams-grid { grid-template-columns: 1fr; }
-    .vs-badge { display: none; }
-    .score-num { font-size: 52px; }
-  }
+/* Mobile */
+@media(max-width:480px){
+  .teams-grid{grid-template-columns:1fr;gap:8px;}
+  .vs-badge{display:none;}
+  .score-num{font-size:60px;}
+  .score-flag{font-size:36px;}
+  .share-row{flex-direction:column;}
+}
 </style>
 </head>
 <body>
-
 <div class="ocean-bg" id="oceanBg"></div>
-
 <div class="container">
+
   <header>
     <div class="eyebrow">🐙 Nhà tiên tri vĩ đại trở lại</div>
     <h1>BẠCH TUỘC<br>PAUL</h1>
-    <div class="subtitle">World Cup 2026 · 48 đội · 12 bảng đấu</div>
+    <div class="subtitle">World Cup 2026 · Dự đoán tỉ số được hỗ trợ bởi AI</div>
   </header>
 
+  <!-- Paul SVG -->
   <div class="paul-container">
     <div class="paul-wrap">
-      <svg class="paul-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="100" cy="85" rx="52" ry="55" fill="#8b35a0"/>
-        <ellipse cx="100" cy="85" rx="44" ry="48" fill="#a040bf"/>
-        <circle cx="85" cy="72" r="8" fill="#6a2080" opacity="0.5"/>
-        <circle cx="112" cy="78" r="6" fill="#6a2080" opacity="0.4"/>
-        <circle cx="94" cy="95" r="5" fill="#6a2080" opacity="0.4"/>
-        <circle cx="83" cy="68" r="12" fill="white"/>
-        <circle cx="117" cy="68" r="12" fill="white"/>
-        <circle cx="86" cy="68" r="7" fill="#1a1a2e"/>
-        <circle cx="120" cy="68" r="7" fill="#1a1a2e"/>
-        <circle cx="88" cy="66" r="3" fill="white"/>
-        <circle cx="122" cy="66" r="3" fill="white"/>
-        <path d="M87 90 Q100 102 113 90" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <path d="M58 118 Q30 140 38 165 Q44 172 48 162 Q42 145 65 128" fill="#8b35a0"/>
-        <path d="M72 128 Q55 155 60 178 Q66 185 70 175 Q58 158 78 135" fill="#9840b0"/>
-        <path d="M86 132 Q82 162 88 182 Q94 188 96 178 Q85 162 92 138" fill="#8b35a0"/>
-        <path d="M100 133 Q100 163 106 182 Q112 188 113 178 Q104 162 108 138" fill="#9840b0"/>
-        <path d="M114 130 Q122 158 118 178 Q124 184 128 174 Q115 156 122 132" fill="#8b35a0"/>
-        <path d="M128 124 Q142 148 138 170 Q144 176 148 166 Q136 148 142 126" fill="#9840b0"/>
-        <path d="M140 115 Q162 135 158 158 Q164 163 167 154 Q152 136 162 116" fill="#8b35a0"/>
-        <path d="M145 104 Q172 118 172 140 Q178 144 180 136 Q160 118 175 102" fill="#9840b0"/>
-        <circle cx="100" cy="30" r="22" fill="white" stroke="#ddd" stroke-width="1"/>
-        <path d="M100 10 Q106 16 100 22 Q94 16 100 10" fill="#222"/>
-        <path d="M88 13 Q94 20 88 27 Q82 20 88 13" fill="#222"/>
-        <path d="M112 13 Q118 20 112 27 Q106 20 112 13" fill="#222"/>
-        <path d="M80 22 Q86 28 82 36 Q76 30 80 22" fill="#222"/>
-        <path d="M120 22 Q124 30 118 36 Q114 28 120 22" fill="#222"/>
-        <text x="100" y="34" text-anchor="middle" font-size="9" fill="#c04fd8" font-weight="bold">2026</text>
+      <svg class="paul-svg" id="paulSvg" viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg">
+        <!-- Tentacles (8 cái) -->
+        <g class="tentacle" id="tentacles">
+          <path d="M58 122 Q28 148 36 178 Q42 188 50 176 Q38 156 66 132" fill="#8b35a0" opacity=".9"/>
+          <path d="M72 132 Q48 162 56 186 Q63 195 70 183 Q55 162 80 140" fill="#9840b0"/>
+          <path d="M87 136 Q78 170 86 190 Q93 198 98 185 Q84 168 94 142" fill="#8b35a0"/>
+          <path d="M100 138 Q100 172 108 190 Q115 197 117 185 Q106 168 112 142" fill="#9840b0"/>
+          <path d="M114 134 Q124 164 118 186 Q126 193 132 180 Q118 160 126 136" fill="#8b35a0"/>
+          <path d="M128 128 Q146 154 140 176 Q148 182 154 170 Q138 150 148 130" fill="#9840b0"/>
+          <path d="M140 118 Q164 140 158 164 Q166 168 170 156 Q152 138 164 118" fill="#8b35a0"/>
+          <path d="M148 106 Q176 122 174 146 Q181 149 184 140 Q162 122 178 104" fill="#9840b0"/>
+          <!-- Suction cups on tentacles -->
+          <circle cx="44" cy="162" r="3" fill="#c04fd8" opacity=".6"/>
+          <circle cx="66" cy="176" r="2.5" fill="#c04fd8" opacity=".5"/>
+          <circle cx="84" cy="175" r="2.5" fill="#c04fd8" opacity=".6"/>
+          <circle cx="102" cy="178" r="2.5" fill="#c04fd8" opacity=".5"/>
+          <circle cx="120" cy="172" r="2.5" fill="#c04fd8" opacity=".6"/>
+          <circle cx="136" cy="162" r="2.5" fill="#c04fd8" opacity=".5"/>
+          <circle cx="154" cy="148" r="2.5" fill="#c04fd8" opacity=".6"/>
+          <circle cx="164" cy="136" r="2" fill="#c04fd8" opacity=".5"/>
+        </g>
+        <!-- Body glow -->
+        <ellipse cx="100" cy="80" rx="56" ry="60" fill="#6a2080" opacity=".4"/>
+        <!-- Body -->
+        <ellipse cx="100" cy="80" rx="52" ry="55" fill="#8b35a0"/>
+        <ellipse cx="100" cy="80" rx="44" ry="48" fill="#a040bf"/>
+        <!-- Sheen -->
+        <ellipse cx="88" cy="58" rx="18" ry="12" fill="rgba(255,255,255,.12)" transform="rotate(-20,88,58)"/>
+        <!-- Spots -->
+        <circle cx="83" cy="70" r="9" fill="#6a2080" opacity=".45"/>
+        <circle cx="114" cy="76" r="7" fill="#6a2080" opacity=".35"/>
+        <circle cx="96" cy="94" r="5" fill="#6a2080" opacity=".4"/>
+        <!-- Eyes white -->
+        <circle cx="82" cy="64" r="14" fill="white"/>
+        <circle cx="118" cy="64" r="14" fill="white"/>
+        <!-- Pupils -->
+        <circle cx="85" cy="64" r="8" fill="#1a1a2e"/>
+        <circle cx="121" cy="64" r="8" fill="#1a1a2e"/>
+        <!-- Iris -->
+        <circle cx="85" cy="64" r="5" fill="#4a2080"/>
+        <circle cx="121" cy="64" r="5" fill="#4a2080"/>
+        <!-- Eye shine -->
+        <circle cx="88" cy="61" r="3" fill="white"/>
+        <circle cx="124" cy="61" r="3" fill="white"/>
+        <circle cx="83" cy="67" r="1.5" fill="white" opacity=".6"/>
+        <circle cx="119" cy="67" r="1.5" fill="white" opacity=".6"/>
+        <!-- Smile -->
+        <path d="M86 88 Q100 102 114 88" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <!-- Cheek blush -->
+        <ellipse cx="70" cy="80" rx="10" ry="6" fill="#c04fd8" opacity=".25"/>
+        <ellipse cx="130" cy="80" rx="10" ry="6" fill="#c04fd8" opacity=".25"/>
+        <!-- World Cup hat/ball -->
+        <circle cx="100" cy="24" r="24" fill="white" stroke="#ddd" stroke-width="1"/>
+        <path d="M100 3 Q107 10 100 18 Q93 10 100 3" fill="#222"/>
+        <path d="M86 6 Q94 14 88 22 Q80 16 86 6" fill="#222"/>
+        <path d="M114 6 Q120 16 112 22 Q106 14 114 6" fill="#222"/>
+        <path d="M78 16 Q86 24 80 34 Q72 28 78 16" fill="#222"/>
+        <path d="M122 16 Q128 28 120 34 Q114 24 122 16" fill="#222"/>
+        <text x="100" y="38" text-anchor="middle" font-size="9" fill="#c04fd8" font-weight="bold" font-family="sans-serif">2026</text>
       </svg>
-      <div class="paul-thinking" id="paulThinking">🤔 Đang xúc tu phân tích...</div>
+      <div class="paul-thinking" id="paulThinking">🤔 Đang phân tích...</div>
     </div>
   </div>
 
-  <!-- Form -->
+  <!-- Prediction form -->
   <div class="card">
     <div class="card-title">⚽ Chọn Trận Đấu</div>
-
-    <!-- Vòng đấu -->
     <div class="stage-pills" id="stagePills">
       <div class="pill active" data-stage="Vòng Bảng" onclick="selectStage(this)">Vòng Bảng</div>
-      <div class="pill" data-stage="Vòng 1/32" onclick="selectStage(this)">Vòng 1/32</div>
-      <div class="pill" data-stage="Vòng 1/16" onclick="selectStage(this)">Vòng 1/16</div>
+      <div class="pill" data-stage="Vòng 1/8" onclick="selectStage(this)">Vòng 1/8</div>
       <div class="pill" data-stage="Tứ Kết" onclick="selectStage(this)">Tứ Kết</div>
       <div class="pill" data-stage="Bán Kết" onclick="selectStage(this)">Bán Kết</div>
-      <div class="pill" data-stage="Chung Kết 🏆" onclick="selectStage(this)">Chung Kết 🏆</div>
+      <div class="pill" data-stage="Chung Kết" onclick="selectStage(this)">Chung Kết 🏆</div>
     </div>
-
-    <!-- Lọc theo bảng -->
-    <div class="group-tabs" id="groupTabs">
-      <div class="gtab active" data-group="ALL" onclick="filterGroup(this)">Tất cả</div>
-      <div class="gtab" data-group="A" onclick="filterGroup(this)">A</div>
-      <div class="gtab" data-group="B" onclick="filterGroup(this)">B</div>
-      <div class="gtab" data-group="C" onclick="filterGroup(this)">C</div>
-      <div class="gtab" data-group="D" onclick="filterGroup(this)">D</div>
-      <div class="gtab" data-group="E" onclick="filterGroup(this)">E</div>
-      <div class="gtab" data-group="F" onclick="filterGroup(this)">F</div>
-      <div class="gtab" data-group="G" onclick="filterGroup(this)">G</div>
-      <div class="gtab" data-group="H" onclick="filterGroup(this)">H</div>
-      <div class="gtab" data-group="I" onclick="filterGroup(this)">I</div>
-      <div class="gtab" data-group="J" onclick="filterGroup(this)">J</div>
-      <div class="gtab" data-group="K" onclick="filterGroup(this)">K</div>
-      <div class="gtab" data-group="L" onclick="filterGroup(this)">L</div>
-    </div>
-
     <div class="teams-grid">
       <div class="team-select-wrap">
         <label>Đội 1</label>
@@ -549,8 +234,13 @@
         <select id="team2"></select>
       </div>
     </div>
+    <button class="btn-predict" onclick="predict()" id="predictBtn">🐙 Để PAUL DỰ ĐOÁN</button>
+  </div>
 
-    <button class="btn-predict" onclick="predict()">🐙 Để PAUL DỰ ĐOÁN</button>
+  <!-- Loading -->
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    Paul đang dùng xúc tu phân tích...
   </div>
 
   <!-- Result -->
@@ -559,13 +249,13 @@
       <div class="result-match-label" id="resultStageLabel">VÒNG BẢNG</div>
       <div class="score-display">
         <div class="score-team">
-          <div class="score-flag" id="resultFlag1">🏴</div>
+          <div class="score-flag" id="resultFlag1">🏳️</div>
           <div class="score-name" id="resultName1">Đội 1</div>
           <div class="score-num" id="resultScore1">0</div>
         </div>
         <div class="score-dash">–</div>
         <div class="score-team">
-          <div class="score-flag" id="resultFlag2">🏴</div>
+          <div class="score-flag" id="resultFlag2">🏳️</div>
           <div class="score-name" id="resultName2">Đội 2</div>
           <div class="score-num" id="resultScore2">0</div>
         </div>
@@ -582,6 +272,12 @@
         </div>
       </div>
       <div class="paul-verdict" id="paulVerdict"></div>
+      <!-- Share buttons -->
+      <div class="share-row">
+        <button class="btn-share fb" onclick="shareFB()">📘 Facebook</button>
+        <button class="btn-share tw" onclick="shareX()">𝕏 Twitter/X</button>
+        <button class="btn-share copy" onclick="copyResult()">📋 Copy</button>
+      </div>
     </div>
   </div>
 
@@ -591,271 +287,83 @@
     <div class="history-list" id="historyList"></div>
   </div>
 
-  <footer>🐙 Bạch Tuộc Paul · World Cup 2026 · 48 đội · Mọi dự đoán chỉ mang tính giải trí</footer>
+  <footer>🐙 Bạch Tuộc Paul · World Cup 2026 · Mọi dự đoán chỉ mang tính giải trí</footer>
 </div>
 
 <script>
-// ===== DỮ LIỆU 48 ĐỘI WORLD CUP 2026 (CHÍNH XÁC) =====
-const GROUPS = {
-  A: [
-    { name: "Mexico", flag: "🇲🇽", strength: 75 },
-    { name: "Nam Phi", flag: "🇿🇦", strength: 62 },
-    { name: "Ecuador", flag: "🇪🇨", strength: 68 },
-    { name: "Hà Lan", flag: "🇳🇱", strength: 83 },
-  ],
-  B: [
-    { name: "Bỉ", flag: "🇧🇪", strength: 80 },
-    { name: "Ai Cập", flag: "🇪🇬", strength: 65 },
-    { name: "New Zealand", flag: "🇳🇿", strength: 58 },
-    { name: "Iran", flag: "🇮🇷", strength: 66 },
-  ],
-  C: [
-    { name: "Brazil", flag: "🇧🇷", strength: 89 },
-    { name: "Morocco", flag: "🇲🇦", strength: 79 },
-    { name: "Haiti", flag: "🇭🇹", strength: 52 },
-    { name: "Scotland", flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", strength: 67 },
-  ],
-  D: [
-    { name: "Mỹ", flag: "🇺🇸", strength: 77 },
-    { name: "Paraguay", flag: "🇵🇾", strength: 67 },
-    { name: "Úc", flag: "🇦🇺", strength: 70 },
-    { name: "Thổ Nhĩ Kỳ", flag: "🇹🇷", strength: 74 },
-  ],
-  E: [
-    { name: "Đức", flag: "🇩🇪", strength: 85 },
-    { name: "Curaçao", flag: "🇨🇼", strength: 54 },
-    { name: "Bờ Biển Ngà", flag: "🇨🇮", strength: 72 },
-    { name: "Thụy Điển", flag: "🇸🇪", strength: 71 },
-  ],
-  F: [
-    { name: "Tây Ban Nha", flag: "🇪🇸", strength: 88 },
-    { name: "Nhật Bản", flag: "🇯🇵", strength: 78 },
-    { name: "Costa Rica", flag: "🇨🇷", strength: 63 },
-    { name: "Bosnia", flag: "🇧🇦", strength: 66 },
-  ],
-  G: [
-    { name: "Bồ Đào Nha", flag: "🇵🇹", strength: 87 },
-    { name: "Hàn Quốc", flag: "🇰🇷", strength: 76 },
-    { name: "Czech", flag: "🇨🇿", strength: 70 },
-    { name: "Na Uy", flag: "🇳🇴", strength: 73 },
-  ],
-  H: [
-    { name: "Tây Ban Nha", flag: "🇪🇸", strength: 88 },
-    { name: "Cape Verde", flag: "🇨🇻", strength: 61 },
-    { name: "Saudi Arabia", flag: "🇸🇦", strength: 68 },
-    { name: "Uruguay", flag: "🇺🇾", strength: 79 },
-  ],
-  I: [
-    { name: "Pháp", flag: "🇫🇷", strength: 90 },
-    { name: "Senegal", flag: "🇸🇳", strength: 76 },
-    { name: "Na Uy", flag: "🇳🇴", strength: 73 },
-    { name: "Iraq", flag: "🇮🇶", strength: 60 },
-  ],
-  J: [
-    { name: "Argentina", flag: "🇦🇷", strength: 92 },
-    { name: "Algeria", flag: "🇩🇿", strength: 64 },
-    { name: "Jordan", flag: "🇯🇴", strength: 58 },
-    { name: "Áo", flag: "🇦🇹", strength: 72 },
-  ],
-  K: [
-    { name: "Bờ Biển Ngà", flag: "🇨🇮", strength: 72 },
-    { name: "Colombia", flag: "🇨🇴", strength: 78 },
-    { name: "CH Congo", flag: "🇨🇩", strength: 60 },
-    { name: "Uzbekistan", flag: "🇺🇿", strength: 62 },
-  ],
-  L: [
-    { name: "Anh", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", strength: 84 },
-    { name: "Croatia", flag: "🇭🇷", strength: 77 },
-    { name: "Ghana", flag: "🇬🇭", strength: 65 },
-    { name: "Panama", flag: "🇵🇦", strength: 60 },
-  ],
-};
-
-// Lời bình luận hài hước của Paul
-const VERDICTS = [
-  (t1, t2, s1, s2) => `Tám xúc tu của tôi đã chỉ về phía ${s1>s2?t1:s1<s2?t2:'cả hai bên'}! Đây là trận đấu ${s1+s2 >= 4 ? 'có nhiều bàn thắng hấp dẫn' : 'thủ chiến rất căng thẳng'}.`,
-  (t1, t2, s1, s2) => `Sau khi ngồi trong bể nước và nhìn chằm chằm vào hai lá cờ... ${s1===s2 ? 'cả hai đội ngang tài ngang sức!' : `${s1>s2?t1:t2} xứng đáng hơn hôm nay!`} 🔮`,
-  (t1, t2, s1, s2) => `Paul cảm nhận được rung động vũ trụ: ${t1} và ${t2} sẽ cho khán giả xem một trận ${s1+s2<=1?'cực kỳ căng thẳng ít bàn thắng':'đáng xem với nhiều kịch tính'}!`,
-  (t1, t2, s1, s2) => `Với ${s1+s2} bàn thắng, đây sẽ là trận đấu ${s1+s2>=5?'cực kỳ mãn nhãn! Paul hy vọng có bắp rang bơ 🍿':'được tính toán kỹ lưỡng từ cả hai phía'}!`,
-  (t1, t2, s1, s2) => `Kinh nghiệm World Cup của tôi mách bảo: ${s1===s2?'Hòa nhau đây! Kết quả công bằng cho cả hai.': `${s1>s2?t1:t2} có phong độ tốt hơn trong thời điểm quan trọng này.`}`,
+// ── 48 đội đủ World Cup 2026 ────────────────────────────────────
+const TEAMS = [
+  // Group A
+  {name:"Mexico",flag:"🇲🇽",group:"A"},{name:"Nam Phi",flag:"🇿🇦",group:"A"},
+  {name:"Hàn Quốc",flag:"🇰🇷",group:"A"},{name:"CH Séc",flag:"🇨🇿",group:"A"},
+  // Group B
+  {name:"Canada",flag:"🇨🇦",group:"B"},{name:"Bosnia",flag:"🇧🇦",group:"B"},
+  {name:"Qatar",flag:"🇶🇦",group:"B"},{name:"Thụy Sĩ",flag:"🇨🇭",group:"B"},
+  // Group C
+  {name:"Brazil",flag:"🇧🇷",group:"C"},{name:"Morocco",flag:"🇲🇦",group:"C"},
+  {name:"Haiti",flag:"🇭🇹",group:"C"},{name:"Scotland",flag:"🏴󠁧󠁢󠁳󠁣󠁴󠁿",group:"C"},
+  // Group D
+  {name:"Mỹ",flag:"🇺🇸",group:"D"},{name:"Paraguay",flag:"🇵🇾",group:"D"},
+  {name:"Úc",flag:"🇦🇺",group:"D"},{name:"Thổ Nhĩ Kỳ",flag:"🇹🇷",group:"D"},
+  // Group E
+  {name:"Đức",flag:"🇩🇪",group:"E"},{name:"Bờ Biển Ngà",flag:"🇨🇮",group:"E"},
+  {name:"Ecuador",flag:"🇪🇨",group:"E"},{name:"Curaçao",flag:"🇨🇼",group:"E"},
+  // Group F
+  {name:"Hà Lan",flag:"🇳🇱",group:"F"},{name:"Nhật Bản",flag:"🇯🇵",group:"F"},
+  {name:"Thụy Điển",flag:"🇸🇪",group:"F"},{name:"Tunisia",flag:"🇹🇳",group:"F"},
+  // Group G
+  {name:"Bỉ",flag:"🇧🇪",group:"G"},{name:"Ai Cập",flag:"🇪🇬",group:"G"},
+  {name:"Iran",flag:"🇮🇷",group:"G"},{name:"New Zealand",flag:"🇳🇿",group:"G"},
+  // Group H
+  {name:"Tây Ban Nha",flag:"🇪🇸",group:"H"},{name:"Cape Verde",flag:"🇨🇻",group:"H"},
+  {name:"Saudi Arabia",flag:"🇸🇦",group:"H"},{name:"Uruguay",flag:"🇺🇾",group:"H"},
+  // Group I
+  {name:"Pháp",flag:"🇫🇷",group:"I"},{name:"Senegal",flag:"🇸🇳",group:"I"},
+  {name:"Iraq",flag:"🇮🇶",group:"I"},{name:"Na Uy",flag:"🇳🇴",group:"I"},
+  // Group J
+  {name:"Argentina",flag:"🇦🇷",group:"J"},{name:"Algeria",flag:"🇩🇿",group:"J"},
+  {name:"Áo",flag:"🇦🇹",group:"J"},{name:"Jordan",flag:"🇯🇴",group:"J"},
+  // Group K
+  {name:"Bồ Đào Nha",flag:"🇵🇹",group:"K"},{name:"CHDC Congo",flag:"🇨🇩",group:"K"},
+  {name:"Uzbekistan",flag:"🇺🇿",group:"K"},{name:"Colombia",flag:"🇨🇴",group:"K"},
+  // Group L
+  {name:"Anh",flag:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",group:"L"},{name:"Croatia",flag:"🇭🇷",group:"L"},
+  {name:"Ghana",flag:"🇬🇭",group:"L"},{name:"Panama",flag:"🇵🇦",group:"L"},
 ];
 
-// Ranking sức mạnh để tính xác suất
-function getStrength(name) {
-  for (const grp of Object.values(GROUPS)) {
-    const t = grp.find(x => x.name === name);
-    if (t) return t.strength;
-  }
-  return 70;
-}
-
-// Logic random thông minh dựa trên sức mạnh đội
-function predictScore(t1name, t2name, stage) {
-  const s1 = getStrength(t1name);
-  const s2 = getStrength(t2name);
-  const diff = s1 - s2;
-
-  // Xác suất thắng dựa trên sức mạnh
-  const p1win = Math.max(0.15, Math.min(0.70, 0.5 + diff * 0.006));
-  const pdraw = stage === 'Vòng Bảng' ? 0.25 : 0;
-  const p2win = 1 - p1win - pdraw;
-
-  const rand = Math.random();
-  let winner; // 1 = t1 thắng, 0 = hòa, 2 = t2 thắng
-  if (rand < p1win) winner = 1;
-  else if (rand < p1win + pdraw) winner = 0;
-  else winner = 2;
-
-  // Tỉ số thực tế theo vòng đấu
-  const maxGoals = stage === 'Vòng Bảng' ? 4 : stage === 'Chung Kết 🏆' ? 3 : 5;
-
-  let sc1, sc2;
-  if (winner === 0) {
-    sc1 = sc2 = Math.floor(Math.random() * 3); // 0-0, 1-1, 2-2
-  } else {
-    const winScore = 1 + Math.floor(Math.random() * maxGoals);
-    const loseScore = Math.floor(Math.random() * winScore);
-    if (winner === 1) { sc1 = winScore; sc2 = loseScore; }
-    else { sc1 = loseScore; sc2 = winScore; }
-  }
-
-  const confidence = Math.round(60 + Math.abs(diff) * 0.3 + Math.random() * 15);
-  const verdictFn = VERDICTS[Math.floor(Math.random() * VERDICTS.length)];
-
-  return { score1: sc1, score2: sc2, confidence: Math.min(confidence, 95), verdict: verdictFn(t1name, t2name, sc1, sc2) };
-}
-
-// ===== STATE =====
 let selectedStage = "Vòng Bảng";
-let selectedGroup = "ALL";
 let history = [];
-let allTeams = [];
-
-// Build danh sách đội từ GROUPS
-function buildTeamList() {
-  const seen = new Set();
-  allTeams = [];
-  for (const [grp, teams] of Object.entries(GROUPS)) {
-    for (const t of teams) {
-      const key = t.name;
-      if (!seen.has(key)) {
-        seen.add(key);
-        allTeams.push({ ...t, group: grp });
-      }
-    }
-  }
-  allTeams.sort((a, b) => a.name.localeCompare(b.name));
-}
+let lastResult = null;
 
 function populateTeams() {
-  const filtered = selectedGroup === 'ALL'
-    ? allTeams
-    : allTeams.filter(t => t.group === selectedGroup);
-
   const s1 = document.getElementById('team1');
   const s2 = document.getElementById('team2');
   s1.innerHTML = s2.innerHTML = '';
-
-  filtered.forEach((t, i) => {
-    s1.add(new Option(`${t.flag} ${t.name}`, t.name));
-    s2.add(new Option(`${t.flag} ${t.name}`, t.name));
+  // Group by group label
+  const groups = {};
+  TEAMS.forEach((t,i) => {
+    if(!groups[t.group]) groups[t.group] = [];
+    groups[t.group].push({...t, idx:i});
   });
-
-  if (filtered.length > 1) s2.selectedIndex = 1;
+  Object.keys(groups).sort().forEach(g => {
+    const og1 = document.createElement('optgroup');
+    const og2 = document.createElement('optgroup');
+    og1.label = og2.label = `Bảng ${g}`;
+    groups[g].forEach(t => {
+      og1.appendChild(new Option(`${t.flag} ${t.name}`, t.idx));
+      og2.appendChild(new Option(`${t.flag} ${t.name}`, t.idx));
+    });
+    s1.appendChild(og1); s2.appendChild(og2);
+  });
+  s2.selectedIndex = 1;
 }
 
 function selectStage(el) {
   document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
   selectedStage = el.dataset.stage;
-  // Ẩn lọc bảng nếu không phải vòng bảng
-  document.getElementById('groupTabs').style.display =
-    selectedStage === 'Vòng Bảng' ? 'flex' : 'none';
 }
 
-function filterGroup(el) {
-  document.querySelectorAll('.gtab').forEach(g => g.classList.remove('active'));
-  el.classList.add('active');
-  selectedGroup = el.dataset.group;
-  populateTeams();
-}
-
-function predict() {
-  const t1name = document.getElementById('team1').value;
-  const t2name = document.getElementById('team2').value;
-
-  if (!t1name || !t2name) { alert('Vui lòng chọn 2 đội!'); return; }
-  if (t1name === t2name) { alert('Vui lòng chọn hai đội khác nhau!'); return; }
-
-  const t1 = allTeams.find(t => t.name === t1name);
-  const t2 = allTeams.find(t => t.name === t2name);
-
-  // Show Paul thinking
-  const thinking = document.getElementById('paulThinking');
-  thinking.textContent = '🤔 Đang xúc tu phân tích...';
-  thinking.classList.add('show');
-
-  setTimeout(() => {
-    const result = predictScore(t1name, t2name, selectedStage);
-
-    let winnerLabel = '', winnerName = '';
-    if (result.score1 > result.score2) {
-      winnerLabel = '🏆 Chiến thắng thuộc về'; winnerName = t1.name;
-    } else if (result.score2 > result.score1) {
-      winnerLabel = '🏆 Chiến thắng thuộc về'; winnerName = t2.name;
-    } else {
-      winnerLabel = '🤝 Kết quả'; winnerName = 'Hòa!';
-    }
-
-    document.getElementById('resultStageLabel').textContent = selectedStage.toUpperCase();
-    document.getElementById('resultFlag1').textContent = t1.flag;
-    document.getElementById('resultName1').textContent = t1.name;
-    document.getElementById('resultScore1').textContent = result.score1;
-    document.getElementById('resultFlag2').textContent = t2.flag;
-    document.getElementById('resultName2').textContent = t2.name;
-    document.getElementById('resultScore2').textContent = result.score2;
-    document.getElementById('resultWinnerLabel').textContent = winnerLabel;
-    document.getElementById('resultWinnerName').textContent = winnerName;
-    document.getElementById('confPct').textContent = result.confidence + '%';
-    document.getElementById('paulVerdict').innerHTML = `<strong>🐙 Paul:</strong> ${result.verdict}`;
-
-    // Reset bar then animate
-    document.getElementById('confFill').style.width = '0%';
-    document.getElementById('result-section').style.display = 'block';
-    setTimeout(() => {
-      document.getElementById('confFill').style.width = result.confidence + '%';
-    }, 100);
-
-    thinking.textContent = '✅ Xong rồi!';
-    setTimeout(() => thinking.classList.remove('show'), 2000);
-
-    // History
-    history.unshift({ t1, t2, s1: result.score1, s2: result.score2, stage: selectedStage });
-    if (history.length > 10) history.pop();
-    renderHistory();
-
-    // Scroll to result
-    document.getElementById('result-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }, 1200);
-}
-
-function renderHistory() {
-  const card = document.getElementById('historyCard');
-  const list = document.getElementById('historyList');
-  if (!history.length) { card.style.display = 'none'; return; }
-  card.style.display = 'block';
-  list.innerHTML = history.map(h => `
-    <div class="history-item">
-      <div>
-        <div class="history-teams">${h.t1.flag} ${h.t1.name} vs ${h.t2.flag} ${h.t2.name}</div>
-        <div class="history-stage">${h.stage}</div>
-      </div>
-      <div class="history-score">${h.s1} – ${h.s2}</div>
-    </div>
-  `).join('');
-}
-
-// Bubbles
 function makeBubbles() {
   const bg = document.getElementById('oceanBg');
   for (let i = 0; i < 18; i++) {
@@ -874,10 +382,168 @@ function makeBubbles() {
   }
 }
 
+async function predict() {
+  const i1 = parseInt(document.getElementById('team1').value);
+  const i2 = parseInt(document.getElementById('team2').value);
+  if (i1 === i2) { alert('Vui lòng chọn hai đội khác nhau!'); return; }
+  const t1 = TEAMS[i1], t2 = TEAMS[i2];
+
+  document.getElementById('predictBtn').disabled = true;
+  document.getElementById('result-section').style.display = 'none';
+  document.getElementById('loading').classList.add('show');
+
+  const paulSvg = document.getElementById('paulSvg');
+  paulSvg.classList.add('thinking');
+  const thinking = document.getElementById('paulThinking');
+  const thinkingMsgs = ['🤔 Đang phân tích...','🐙 Duỗi xúc tu...','📊 Tính toán...','🔮 Tiên tri...'];
+  let ti = 0;
+  thinking.textContent = thinkingMsgs[0];
+  thinking.classList.add('show');
+  const thinkInterval = setInterval(() => {
+    ti = (ti+1) % thinkingMsgs.length;
+    thinking.textContent = thinkingMsgs[ti];
+  }, 900);
+
+  // Cảnh báo nếu mở từ file://
+  if (location.protocol === 'file:') {
+    clearInterval(thinkInterval);
+    paulSvg.classList.remove('thinking');
+    document.getElementById('loading').classList.remove('show');
+    document.getElementById('predictBtn').disabled = false;
+    thinking.textContent = '😵 Cần chạy qua HTTP!';
+    setTimeout(()=> thinking.classList.remove('show'), 3000);
+    showError('⚠️ Đang mở từ file://<br>Cần chạy HTTP server:<br><code style="background:rgba(0,0,0,.3);padding:2px 6px;border-radius:4px">python -m http.server 8080</code><br>rồi vào <b>http://localhost:8080</b>');
+    return;
+  }
+
+  try {
+    const resp = await fetch("https://api.anthropic.com/v1/messages", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({
+        model:"claude-sonnet-4-20250514",
+        max_tokens:800,
+        system:`Bạn là Bạch Tuộc Paul huyền thoại — nhà tiên tri World Cup vĩ đại nhất. Phân tích sức mạnh thực tế hai đội và đưa ra dự đoán hợp lý. Trả về JSON CHÍNH XÁC không có markdown hay text thêm:
+{"score1":<số 0-5>,"score2":<số 0-5>,"confidence":<số 60-97>,"verdict":"<2-3 câu tiếng Việt vui hài hước về 2 đội và lý do kết quả>"}`,
+        messages:[{role:"user",content:`Dự đoán ${t1.name} vs ${t2.name}, vòng ${selectedStage}, World Cup 2026.`}]
+      })
+    });
+
+    if (!resp.ok) {
+      const errJson = await resp.json().catch(()=>({}));
+      throw new Error(errJson.error?.message || `Lỗi HTTP ${resp.status}`);
+    }
+
+    const data = await resp.json();
+    if (!data.content || !Array.isArray(data.content)) {
+      throw new Error('Phản hồi API không đúng định dạng: ' + JSON.stringify(data).slice(0,100));
+    }
+    const text = data.content.map(c => c.text||'').join('');
+    const m = text.match(/\{[\s\S]*?\}/);
+    if(!m) throw new Error('Không tìm thấy JSON trong: ' + text.slice(0,80));
+    const result = JSON.parse(m[0]);
+    if (typeof result.score1 !== 'number') throw new Error('JSON thiếu trường score');
+
+    let winnerText='', winnerName='';
+    if(result.score1 > result.score2){ winnerText='🏆 Chiến thắng thuộc về'; winnerName=t1.name; }
+    else if(result.score2 > result.score1){ winnerText='🏆 Chiến thắng thuộc về'; winnerName=t2.name; }
+    else { winnerText='🤝 Kết quả'; winnerName='Hòa!'; }
+
+    document.getElementById('resultStageLabel').textContent = selectedStage.toUpperCase();
+    document.getElementById('resultFlag1').textContent = t1.flag;
+    document.getElementById('resultName1').textContent = t1.name;
+    document.getElementById('resultFlag2').textContent = t2.flag;
+    document.getElementById('resultName2').textContent = t2.name;
+    document.getElementById('resultWinnerLabel').textContent = winnerText;
+    document.getElementById('resultWinnerName').textContent = winnerName;
+    document.getElementById('confPct').textContent = result.confidence+'%';
+    document.getElementById('paulVerdict').innerHTML = `<strong>🐙 Paul phán:</strong> ${result.verdict}`;
+
+    // Animate scores
+    document.getElementById('resultScore1').textContent = '?';
+    document.getElementById('resultScore2').textContent = '?';
+    document.getElementById('result-section').style.display = 'block';
+    setTimeout(()=>{ document.getElementById('resultScore1').textContent = result.score1; },300);
+    setTimeout(()=>{ document.getElementById('resultScore2').textContent = result.score2; },600);
+    setTimeout(()=>{ document.getElementById('confFill').style.width = result.confidence+'%'; },400);
+
+    lastResult = {t1, t2, result, stage: selectedStage};
+    thinking.textContent = '✅ Xong rồi!';
+    setTimeout(()=> thinking.classList.remove('show'), 2000);
+
+    history.unshift({t1,t2,s1:result.score1,s2:result.score2,stage:selectedStage,conf:result.confidence});
+    if(history.length > 8) history.pop();
+    renderHistory();
+
+  } catch(e) {
+    console.error('Predict error:', e);
+    thinking.textContent = '😵 Xúc tu bị chuột rút!';
+    setTimeout(()=> thinking.classList.remove('show'), 2500);
+    showError('❌ ' + e.message);
+  }
+
+  clearInterval(thinkInterval);
+  paulSvg.classList.remove('thinking');
+  document.getElementById('loading').classList.remove('show');
+  document.getElementById('predictBtn').disabled = false;
+}
+
+function showError(msg) {
+  let box = document.getElementById('errorBox');
+  if (!box) {
+    box = document.createElement('div');
+    box.id = 'errorBox';
+    box.style.cssText = 'background:rgba(255,80,80,.12);border:1px solid rgba(255,80,80,.4);border-radius:14px;padding:16px 20px;margin-bottom:16px;font-size:13px;color:#ffaaaa;line-height:1.7;text-align:center;';
+    document.getElementById('loading').after(box);
+  }
+  box.innerHTML = msg;
+  box.style.display = 'block';
+  setTimeout(()=>{ box.style.display='none'; }, 8000);
+}
+
+function renderHistory() {
+  const card = document.getElementById('historyCard');
+  const list = document.getElementById('historyList');
+  if(!history.length){ card.style.display='none'; return; }
+  card.style.display='block';
+  list.innerHTML = history.map(h=>`
+    <div class="history-item">
+      <div>
+        <div class="history-teams">${h.t1.flag} ${h.t1.name} vs ${h.t2.flag} ${h.t2.name}</div>
+        <div class="history-stage">${h.stage} · Paul tin ${h.conf}%</div>
+      </div>
+      <div class="history-score">${h.s1} – ${h.s2}</div>
+    </div>`).join('');
+}
+
+// ── Share functions ────────────────────────────────────────────
+function getShareText() {
+  if(!lastResult) return '';
+  const {t1,t2,result,stage} = lastResult;
+  return `🐙 Bạch Tuộc Paul dự đoán ${stage} World Cup 2026:\n${t1.flag} ${t1.name} ${result.score1} – ${result.score2} ${t2.name} ${t2.flag}\nĐộ tự tin: ${result.confidence}%\n👉 Thử ngay: https://qpmed.github.io/Paul/`;
+}
+function shareFB() {
+  const url = encodeURIComponent('https://qpmed.github.io/Paul/');
+  const quote = encodeURIComponent(getShareText());
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`,'_blank');
+}
+function shareX() {
+  const text = encodeURIComponent(getShareText());
+  window.open(`https://twitter.com/intent/tweet?text=${text}`,'_blank');
+}
+function copyResult() {
+  const text = getShareText();
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn = document.querySelector('.btn-share.copy');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✅ Đã copy!';
+    setTimeout(()=>{ btn.innerHTML = orig; }, 2000);
+  }).catch(()=> alert(getShareText()));
+}
+
 // Init
-buildTeamList();
-populateTeams();
 makeBubbles();
+populateTeams();
 </script>
 </body>
 </html>
